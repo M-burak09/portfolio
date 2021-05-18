@@ -1,0 +1,669 @@
+// imports
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital@0;1&display=swap');
+
+// Sass variables
+$primary-color: #444F6B;
+$secondary_color: #3D4760;
+$action-color: #A57F5A;
+$text-color: #FFF;
+$shadow: drop-shadow(5px 5px 8px rgba(0,0,0, 0.7));
+$box-shadow: 1px 1px 10px rgba(0,0,0, 0.5);
+$padding: 3em;
+
+// Re-usable styles 
+@mixin button {
+    display: block;
+    margin: 0 auto;
+    border-style: none;
+    padding: 0.5em 1em;
+    border-radius: 10px;
+    background-color: $action-color;
+    color: $text-color;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+    box-shadow: $box-shadow;
+
+    &:hover{
+        background-color: #856749;
+        cursor: pointer;
+    }
+  }
+
+@mixin skillCard{
+    position: relative;
+    z-index: 1;
+    background-color: $primary-color;
+    width: 87.5%;
+    margin-left: 12.5%;
+    margin-bottom: 50px;
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
+    box-shadow: $box-shadow;
+    left: 0;
+    pointer-events: none;
+}
+
+@mixin icon{
+    width: 25px;
+    height: 25px;
+    pointer-events: none;
+}
+
+@mixin skillGrid{ 
+    display: grid; 
+    grid-template-rows: repeat(5,auto);
+    grid-auto-flow: column;
+    padding: 0 2em 2em 2em; 
+}
+
+@mixin skillHeader{
+    padding: 1.5em 1.5em 1em 1.5em;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: poppins, Arial;
+    user-select: none;
+}
+
+body{
+    background-color: $primary-color;
+    color: $text-color;
+}
+
+h1{
+    font-size: 24px;
+    font-weight: normal;
+}
+
+h2{
+    font-size: 20px;
+}
+
+.navigation{
+    background-color: $secondary_color;
+    position: absolute;
+    width: 100%;
+    height: 3em;
+    box-shadow: $box-shadow;
+    z-index: 1;
+
+    &__list{
+        list-style: none;
+        display: flex;
+        justify-content: flex-end;
+        position: relative;
+        font-size: 14px;
+
+        &__logo{
+            position: absolute;
+            top: 0;
+            left: 0;
+            padding: 0.5em;
+
+            & a img{
+                width: 2.5em;
+            }
+        }
+
+        &__item{
+            padding: 1em;
+            
+            & a{
+                color: $text-color;
+                text-decoration: none;
+            }
+        }
+    }
+} 
+
+.homepage{
+    height: 100vh;
+    height: calc(var(--vh, 1vh) * 100);
+    position: relative;
+    overflow: hidden;
+    &__background{
+        opacity: 0.1;
+        
+        &__hexagon{
+            overflow: hidden;
+            position: absolute;
+            width: 30%;
+            z-index: -12;
+            filter: $shadow;
+            pointer-events: none;
+
+            &:nth-child(1){
+                left: -12%;
+                top: 20%;
+                width: 38%;
+                transform: rotate(7deg);
+            }
+
+            &:nth-child(2){
+                left: 10%;
+                top: 90%;
+                width: 28%;
+                transform: rotate(-14deg);
+            }
+
+            &:nth-child(3){
+                left: 90%;
+                top: 40%;
+                width: 25%;
+                transform: rotate(-14deg);
+            }
+            
+            &:nth-child(4){
+                left: 50%;
+                top: 60%;
+                width: 28%;
+                transform: rotate(4deg);
+            }
+
+            &:nth-child(5){
+                left: 80%;
+                top: 3%;
+            }
+        }
+
+    }
+
+    &__content{
+        padding: 8em 4em 4em 4em;
+        text-align: center;
+
+        & h2{
+            margin: 2em 0;
+        }
+
+        &__scroll__circle{
+            animation: scrolling 1s infinite alternate-reverse;
+        }
+    }
+
+    &__figure{
+        width: 100%;
+        pointer-events: none;
+
+        & img{
+            margin: 0 auto;
+            position: absolute;
+            width: 100%;
+            bottom: 0;
+            z-index: -1;
+            filter: $shadow;          
+        }
+    }
+}
+
+.about{
+    background-color: $secondary_color;
+    position: relative;
+    &__content{
+        padding: $padding;
+
+        &__button{
+            @include button;
+            margin-top: 2em;
+            margin-bottom: 2em;
+        }
+    }
+
+    &__skills{
+        &__first{
+            @include skillCard;
+
+            &__header{
+                @include skillHeader
+            }
+
+            &__grid{
+                @include skillGrid;
+
+                &__icon{
+                    display: flex;
+                    padding: 0.5em 0;
+                    
+
+                    & img{
+                        padding-right: 0.5em;
+                        @include icon;
+                    }
+                }     
+            }
+            
+        }
+
+        &__second{
+            @include skillCard;
+
+            &__grid{
+                @include skillGrid;
+
+                &__header{
+                    @include skillHeader
+                }
+
+                &__icon{
+                    display: flex;
+                    padding: 0.5em 0;
+
+                    & img{
+                        padding-right: 0.5em;
+                        @include icon;
+                    }
+                }     
+            } 
+        }
+
+    }
+    &__overlap{
+        background-color: $primary-color;
+        position: absolute;
+        width: 100%;
+        height: 25px;
+        bottom: 0;
+    }
+}
+
+.projects{
+    padding: $padding;
+
+    &__project{
+        margin: 4em 0;
+
+        &__figure{
+            height: 100%;
+            margin-bottom: 0.5em;
+
+            &__overlay{
+                display: none;
+            }
+
+                & img{
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 10px;
+                    box-shadow: $box-shadow;
+            }
+        }
+
+        &__content{
+            background-color: $secondary_color;
+            border-radius: 10px;
+            padding: 2em;
+            box-shadow: $box-shadow;
+
+            &__icons{
+                display: grid;
+                grid-template-rows: repeat(1, auto);
+                margin-top: 2em;
+                justify-content: end; 
+                grid-auto-flow: column;
+                position: relative;
+
+                &__date{
+                    display: none;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    font-style: italic;
+                }
+
+                & img{
+                    @include icon;
+                    padding-left: 0.5em;
+                }
+            }
+        }
+    }
+}
+
+.contact{
+    background-color: $secondary-color;
+    padding: $padding;
+
+    &__content{
+        
+        &__text{
+            padding: 2em 0;
+        }
+
+        &__info{
+            display: flex;
+            padding-bottom: 1em;
+            
+            & span{
+                padding-left: 1em;
+                line-height: 100%;
+            }
+        }
+
+        &__form{
+            width: 100%;
+
+            &__input{
+                width: 100%;
+                background: none;
+                border: none;
+                border-bottom: 1px solid $text-color;
+                margin-bottom: 2em;
+                padding-bottom: 0.25em;
+                color: $text-color;
+
+                &:focus{
+                    outline: none;
+                    caret-color: $text-color;
+                }
+            }
+
+            &__message{
+                width: 100%;
+                box-sizing: border-box;
+                background: none;
+                border: 1px solid $text-color;
+                padding: 1em;
+                color: $text-color;
+
+                &:focus{
+                    outline: none;
+                    caret-color: $text-color;
+                }
+            }
+
+            &__button{
+                @include button;
+                margin-top: 1em;
+            }
+        }
+    }
+}
+
+.footer{
+    background-color: #333;
+    padding: 1em 2em;
+    position: relative;
+    
+
+    &__copyright{
+        font-size: 11px;
+        padding-right: 1em;
+    }
+
+    &__icons{
+        display: grid;
+        position: absolute;
+        bottom: 1em;
+        right: 1em;
+        grid-template-columns: repeat(3, 40px);
+        justify-content: end; 
+
+        & .fa{
+            color: $text-color;
+            text-decoration: none;
+        }
+    }
+}
+
+// keyframe animations
+@keyframes float{
+	0% {
+		transform: rotate(-4deg) translatey(0px);
+	}
+	50% {
+		transform: rotate(4deg) translatey(-20px);
+	}
+	100% {
+		transform: rotate(-4deg) translatey(0px);
+	}
+}
+
+@keyframes scrolling{
+    from{
+        transform: translate(262px, 798px);
+        z-index: 5;
+    }
+    to{
+        transform: translate(262px, 830px);
+    }
+}
+
+@media only screen and (min-width: 750px){
+    h1{
+        font-size: 28px;
+    }
+
+    h2{
+        font-size: 24px;
+    }
+
+    .homepage__content{
+        padding: 8em 12em 4em 12em;
+    }
+
+    .homepage{
+        &__background{
+            &__hexagon{
+                &:nth-child(5){
+                    left: 87.5%;
+                    top: 1.5%;
+                    width: 20%;
+                }
+            }
+        }
+
+        &__content{
+            padding: 8em 12em 4em 12em;
+        }
+    
+        &__figure{
+    
+            & img{
+                width: 80%;
+                left: 10%;
+            }
+        }
+    }
+
+    .about__content, .projects, .contact{
+        padding: $padding 6em;
+    }
+
+    .about__skills__first__grid, .about__skills__second__grid{
+        grid-template-rows: repeat(3,auto);
+    }
+
+    .projects__project__content__icons__date{
+            display: block;
+    }
+
+    .footer{
+        &__copyright{
+            font-size: 14px;
+            text-align: center;
+        }
+
+        &__icons{
+            & a{
+                font-size: 20px;
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: 1200px){
+
+    h1{
+        font-size: 30px;
+    }
+
+    p{
+        font-size: 20px;
+    }
+
+    .navigation{
+        height: 4em;
+        &__list{
+        font-size: 18px;
+
+            &__logo{
+
+                & a img{
+                    width: 50px;
+                }
+            }
+
+            &__item{
+                padding: 1em 2em;
+            }
+        }
+        
+    }
+
+    .homepage{
+        &__background{   
+            &__hexagon{
+                animation: float 6s ease-in-out infinite;
+                &:nth-child(1){
+                    left: -6%;
+                    top: 40%;
+                    width: 17%;
+                    transform: rotate(-4deg);
+                    animation-delay: 1.5s;
+                }
+
+                &:nth-child(2){
+                    left: 40%;
+                    top: 75%;
+                    width: 18%;
+                    transform: rotate(-4deg);
+                }
+
+                &:nth-child(3){
+                    left: 80%;
+                    top: 40%;
+                    width: 10%;
+                    transform: rotate(-4deg);
+                    animation-delay: 1s;
+                }
+                
+                &:nth-child(4){
+                    left: 27%;
+                    top: 12%;
+                    width: 14%;
+                    transform: rotate(-4deg);
+                    animation-delay: 0.5s;
+                }
+
+                &:nth-child(5){
+                    left: 92%;
+                    top: -6%;
+                    width: 15%;
+                    animation-delay: 2s;
+                    transform: rotate(-4deg);
+                }
+            }
+        }
+
+        &__content{
+            width: 25%;
+            padding: 0;
+            transform: translate(12.5vw, 25vh);
+        }
+
+        &__figure img{
+        width: 50%;
+        right: -40%;
+        }
+    }
+
+    .about{
+        display: flex;
+
+        &__content{
+            width: 50%;
+        }
+
+        &__skills{
+            width: 80%;
+            margin-top: 6.25em;
+        }
+
+        &__overlap{
+            height: 70px;
+        }
+    }
+
+    .projects{
+        &__project{
+            display: flex;  
+
+            &__figure{
+                margin: 0em 0 4em 0;
+                width: 40%;
+                height: 100%;
+                object-fit: cover;
+
+                &:hover .projects__project__figure__overlay{
+                    opacity: 0.5;
+                    cursor: pointer;
+                }
+                
+                &__overlay{
+                    display: block;
+                    background-color: $primary-color;
+                    position: absolute;
+                    width: 100%;
+                    height: 98.25%;
+                    top: 0;
+                    right: 0;
+                    bottom: 0;
+                    left: 0;
+                    border-radius: 10px;
+                    opacity: 0;
+                    transition: 0.5s ease;
+                    pointer-events: none;
+
+                    &__link{
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        font-size: 14px;
+                    }
+                }
+            }
+
+            &__content{
+                margin: 1em 0 6em -2em;
+                width: 45%;
+                height: 60%;
+            }
+
+            &__right{
+                margin: 1em -2em 6em 0;
+            }
+        }
+
+        &__right{
+            flex-direction: row-reverse;
+        }
+    }
+
+    .contact{
+        &__content{
+            background-color: $primary-color;
+            width: 50%;
+            margin: 0 auto;
+            padding: 4em;
+            border-radius: 10px;
+            box-shadow: $box-shadow;
+
+            &__form__button{
+                margin-top: 4em;
+            }
+        }
+    }
+}
