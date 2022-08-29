@@ -65,6 +65,8 @@ $padding: 3em;
     padding: 0;
     font-family: poppins, Arial;
     user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-drag: none;
 }
 
 body{
@@ -79,6 +81,10 @@ h1{
 
 h2{
     font-size: 20px;
+}
+
+img{
+   
 }
 
 .navigation{
@@ -296,6 +302,10 @@ h2{
             padding: 2em;
             box-shadow: $box-shadow;
 
+            &__link{
+                color: white;
+            }
+
             &__icons{
                 display: grid;
                 grid-template-rows: repeat(1, auto);
@@ -500,7 +510,7 @@ h2{
     }
 
     p{
-        font-size: 20px;
+        font-size: 18px;
     }
 
     .navigation{
@@ -583,11 +593,12 @@ h2{
         display: flex;
 
         &__content{
-            width: 50%;
+            width: 70%;
+            padding-right: 2rem;
         }
 
         &__skills{
-            width: 80%;
+            width: 100%;
             margin-top: 6.25em;
         }
 
@@ -607,7 +618,7 @@ h2{
                 object-fit: cover;
 
                 &:hover .projects__project__figure__overlay{
-                    opacity: 0.5;
+                    opacity: 0.6;
                     cursor: pointer;
                 }
                 
@@ -638,7 +649,7 @@ h2{
 
             &__content{
                 margin: 1em 0 6em -2em;
-                width: 45%;
+                width: 50%;
                 height: 60%;
             }
 
