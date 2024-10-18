@@ -29,11 +29,13 @@ $padding: 3em;
     }
   }
 
+// Change margins here when about text becomes less or more
 @mixin skillCard{
     position: relative;
     z-index: 1;
     background-color: $primary-color;
     width: 87.5%;
+    margin-top: 50px;
     margin-left: 12.5%;
     margin-bottom: 50px;
     border-bottom-left-radius: 10px;
